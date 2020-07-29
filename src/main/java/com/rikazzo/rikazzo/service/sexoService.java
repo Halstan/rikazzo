@@ -15,7 +15,7 @@ public class sexoService {
     private final sexoRepository sexoRepository;
 
     @Autowired
-    public sexoService(com.rikazzo.rikazzo.repository.sexoRepository sexoRepository) {
+    public sexoService(sexoRepository sexoRepository) {
         this.sexoRepository = sexoRepository;
     }
 
@@ -27,12 +27,12 @@ public class sexoService {
         return this.sexoRepository.save(sexo);
     }
 
-    public Sexo updateSexo(Sexo sexo){
-        return this.sexoRepository.save(sexo);
-    }
-
     public Sexo findById(Long id){
         return this.sexoRepository.findById(id).get();
+    }
+
+    public Sexo updateSexo(Sexo sexo){
+        return this.sexoRepository.save(sexo);
     }
 
     public void deleteSexo(Long id){

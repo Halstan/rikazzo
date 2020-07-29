@@ -18,7 +18,7 @@ public class tallaController {
     private final tallaService tallaService;
 
     @Autowired
-    public tallaController(com.rikazzo.rikazzo.service.tallaService tallaService) {
+    public tallaController(tallaService tallaService) {
         this.tallaService = tallaService;
     }
 

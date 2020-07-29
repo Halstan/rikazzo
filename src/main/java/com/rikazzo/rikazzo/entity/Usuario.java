@@ -53,7 +53,7 @@ public class Usuario{
     private Collection<Venta> vent = new ArrayList<>();
     
     @Column
-    private String state=StateType.ACTIVE.name();
+    private String state = StateType.ACTIVE.name();
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),

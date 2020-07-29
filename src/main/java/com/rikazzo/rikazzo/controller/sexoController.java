@@ -2,7 +2,6 @@ package com.rikazzo.rikazzo.controller;
 
 import com.rikazzo.rikazzo.entity.Sexo;
 import com.rikazzo.rikazzo.service.sexoService;
-import com.rikazzo.rikazzo.service.tallaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class sexoController {
     private final sexoService sexoService;
 
     @Autowired
-    public sexoController(com.rikazzo.rikazzo.service.sexoService sexoService) {
+    public sexoController(sexoService sexoService) {
         this.sexoService = sexoService;
     }
 
@@ -36,8 +35,8 @@ public class sexoController {
         return new ResponseEntity<>(resp, HttpStatus.CREATED);
     }
 
-    @GetMapping(produces = "application/json")
-    public Sexo findById(Long id) {
+    @GetMapping(value = "/{id}" ,produces = "application/json")
+    public Sexo findById(@PathVariable Long id) {
         return this.sexoService.findById(id);
     }
 
