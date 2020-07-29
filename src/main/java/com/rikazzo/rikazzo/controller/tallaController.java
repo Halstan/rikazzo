@@ -40,7 +40,7 @@ public class tallaController {
         return this.tallaService.findTalla(id);
     }
 
-    @PutMapping()
+    @PutMapping(consumes = "application/json")
     public ResponseEntity<?> updateTalla(@RequestBody Talla talla){
         Map<String, Object> resp = new HashMap<>();
         this.tallaService.addTalla(talla);
