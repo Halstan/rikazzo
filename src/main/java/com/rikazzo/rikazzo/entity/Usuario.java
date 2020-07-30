@@ -1,6 +1,7 @@
 
 package com.rikazzo.rikazzo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -42,20 +43,24 @@ public class Usuario{
     @Column
     private Integer celular;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 100)
     @Email
     private String email;
     
     @ManyToOne
+    @JsonIgnoreProperties("cli")
     private Sexo sexo;
     
     @OneToMany(mappedBy = "usua")
+    @JsonIgnoreProperties("usua")
     private Collection<Venta> vent = new ArrayList<>();
     
     @Column
+    @JsonIgnoreProperties
     private String state = StateType.ACTIVE.name();
     
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("user")
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario"),
                 inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<RoleVo> rol = new HashSet<>();
