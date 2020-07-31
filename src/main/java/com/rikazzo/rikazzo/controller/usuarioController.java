@@ -47,4 +47,14 @@ public class usuarioController {
         return this.usuarioService.findById(id);
     }
 
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public Usuario updateUser(@RequestBody Usuario usuario){
+        return this.usuarioService.updateUser(usuario);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteUser(@PathVariable Integer id){
+        this.usuarioService.deleteUser(id);
+    }
+
 }

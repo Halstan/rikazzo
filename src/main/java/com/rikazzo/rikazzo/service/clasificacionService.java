@@ -23,7 +23,7 @@ public class clasificacionService {
         return this.clasificacionRepository.findAll();
     }
 
-    public Clasificacion insertClasificacion(Clasificacion clasificacion){
+    public Clasificacion addClasificacion(Clasificacion clasificacion){
         return this.clasificacionRepository.save(clasificacion);
     }
 
