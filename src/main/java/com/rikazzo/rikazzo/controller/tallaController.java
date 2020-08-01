@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/talla")
+@RequestMapping("/api/talla")
 public class tallaController {
 
     private final tallaService tallaService;

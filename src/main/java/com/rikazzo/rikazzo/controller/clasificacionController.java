@@ -2,13 +2,14 @@ package com.rikazzo.rikazzo.controller;
 
 import com.rikazzo.rikazzo.entity.Clasificacion;
 import com.rikazzo.rikazzo.service.clasificacionService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/clasificaciones")
+@RequestMapping("/api/clasificaciones")
 public class clasificacionController {
 
     private final clasificacionService clasificacionService;
@@ -19,6 +20,7 @@ public class clasificacionController {
     }
 
     @GetMapping(produces = "application/json")
+    @ApiOperation(value = "Muestra todas la clasificaciones", notes = "Muestra todas las clasificaciones", response = Clasificacion.class)
     public List<Clasificacion> findAll(){
         return this.clasificacionService.findAll();
     }

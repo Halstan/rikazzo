@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/metodos")
+@RequestMapping("/api/metodos")
 public class metodoController {
 
     private final metodoService metodoService;

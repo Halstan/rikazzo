@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/sexo")
+@RequestMapping("/api/sexo")
 public class sexoController {
 
     private final sexoService sexoService;
