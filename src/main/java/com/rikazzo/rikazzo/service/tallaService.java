@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Talla;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.tallaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class tallaService {
     }
 
     public Talla findTalla(Long id){
-        return this.tallaRepository.findById(id).get();
+        return this.tallaRepository.findById(id).orElseThrow(() -> new apiRequestException("Esta talla no existe"));
     }
 
     public Talla updateTalla(Talla talla){

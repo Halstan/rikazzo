@@ -1,6 +1,7 @@
 
 package com.rikazzo.rikazzo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,20 +21,27 @@ public class Ropa{
 
     @Column
     private Double precio;
-    
+
+    private Integer cantidad;
+
     @ManyToOne
+    @JsonIgnoreProperties("ropa")
     private Talla talla;
     
     @ManyToOne
+    @JsonIgnoreProperties("ropa")
     private Clasificacion clasi;
     
     @ManyToOne
+    @JsonIgnoreProperties("ropa")
     private Proveedor prove;
     
     @ManyToOne
+    @JsonIgnoreProperties("ropa")
     private ModeloRopa modelo;
     
     @OneToMany(mappedBy = "ropa", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("ropa")
     private List<Venta> vent = new ArrayList<>();
     
 }

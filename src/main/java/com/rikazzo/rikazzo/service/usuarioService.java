@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Usuario;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.usuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class usuarioService {
     }
 
     public Usuario findById(Integer id){
-        return this.usuarioRepository.findById(id).get();
+        return this.usuarioRepository.findById(id).orElseThrow(() -> new apiRequestException("Este usuario no existe"));
     }
 
     public void deleteUser(Integer id){

@@ -28,7 +28,7 @@ public class metodoController {
         return this.metodoService.addMetodo(metodoPago);
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @PutMapping(consumes = "application/json", produces = "application/json")
     public MetodoPago updateMetodo(@RequestBody MetodoPago metodoPago){
         return this.metodoService.updateMetodo(metodoPago);
     }

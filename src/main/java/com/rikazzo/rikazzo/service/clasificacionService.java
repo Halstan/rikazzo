@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Clasificacion;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.clasificacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class clasificacionService {
     }
 
     public Clasificacion findClasificacion(Integer id){
-        return this.clasificacionRepository.findById(id).get();
+        return this.clasificacionRepository.findById(id).orElseThrow(() -> new apiRequestException("Esta clasificacion no existe"));
     }
 
     public void deleteClasificacion(Integer id){

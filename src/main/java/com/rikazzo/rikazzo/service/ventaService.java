@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Venta;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.ventaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class ventaService {
         this.ventaRepository = ventaRepository;
     }
 
-    public List<Venta> findAll(Venta venta){
+    public List<Venta> findAll(){
         return this.ventaRepository.findAll();
     }
 
@@ -28,10 +29,14 @@ public class ventaService {
     }
 
     public Venta findById(Long id){
-        return this.ventaRepository.findById(id).get();
+        return this.ventaRepository.findById(id).orElseThrow(() -> new apiRequestException("Esta vente no existe"));
     }
 
-    public Venta desactivateVenta(Venta venta){
-        return this.ventaRepository.save(venta);
+    public void desactivateVenta(Integer id){
+        this.ventaRepository.desactivateVenta(id);
+    }
+
+    public void makeVenta(Integer cantidad, Integer id_ropa){
+        this.ventaRepository.makeVenta(cantidad, id_ropa);
     }
 }

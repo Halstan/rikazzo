@@ -1,5 +1,6 @@
 package com.rikazzo.rikazzo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,8 +20,8 @@ public class MetodoPago{
     @Column(length = 40)
     private String metodo;
 
-
     @OneToMany(mappedBy = "meto")
+    @JsonIgnoreProperties("meto")
     private List<Venta> venta = new ArrayList<>();
 
 

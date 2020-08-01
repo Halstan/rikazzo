@@ -51,8 +51,8 @@ public class Usuario{
     @JsonIgnoreProperties("cli")
     private Sexo sexo;
     
-    @OneToMany(mappedBy = "usua")
-    @JsonIgnoreProperties("usua")
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
     private Collection<Venta> vent = new ArrayList<>();
     
     @Column

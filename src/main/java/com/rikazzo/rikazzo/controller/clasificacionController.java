@@ -24,7 +24,7 @@ public class clasificacionController {
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")
-    public Clasificacion addClasificacion(Clasificacion clasificacion){
+    public Clasificacion addClasificacion(@RequestBody Clasificacion clasificacion){
         return this.clasificacionService.addClasificacion(clasificacion);
     }
 

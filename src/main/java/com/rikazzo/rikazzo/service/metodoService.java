@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.MetodoPago;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.metodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class metodoService {
     }
 
     public MetodoPago findMetodo(Integer id){
-        return this.metodoRepository.findById(id).get();
+        return this.metodoRepository.findById(id).orElseThrow(() -> new apiRequestException("Este metodo no existe"));
     }
 
     public MetodoPago updateMetodo(MetodoPago metodoPago){

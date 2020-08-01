@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Ropa;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.ropaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class ropaService {
     }
 
     public Ropa findById(Integer id){
-        return this.ropaRepository.findById(id).get();
+        return this.ropaRepository.findById(id).orElseThrow(() -> new apiRequestException("Esta ropa no existe"));
     }
 
     public void deleteRopa(Integer id){

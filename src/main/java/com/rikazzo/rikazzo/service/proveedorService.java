@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Proveedor;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.proveedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +33,7 @@ public class proveedorService {
     }
 
     public Proveedor findById(Integer id){
-        return this.proveedorRepository.findById(id).get();
+        return this.proveedorRepository.findById(id).orElseThrow(() -> new apiRequestException("Este proveedor no existe"));
     }
 
     public void deleteProveedor(Integer id){

@@ -1,6 +1,7 @@
 package com.rikazzo.rikazzo.service;
 
 import com.rikazzo.rikazzo.entity.Sexo;
+import com.rikazzo.rikazzo.exception.apiRequestException;
 import com.rikazzo.rikazzo.repository.sexoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class sexoService {
     }
 
     public Sexo findById(Long id){
-        return this.sexoRepository.findById(id).get();
+        return this.sexoRepository.findById(id).orElseThrow(() -> new apiRequestException("Este sexo no existe"));
     }
 
     public Sexo updateSexo(Sexo sexo){
