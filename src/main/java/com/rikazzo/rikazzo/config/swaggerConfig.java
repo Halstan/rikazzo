@@ -22,7 +22,7 @@ public class swaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors
                 .basePackage("com.rikazzo.rikazzo.controller"))
-                .paths(PathSelectors.ant("/api/*"))
+                .paths(PathSelectors.ant("/api/**"))
                 .build()
                 .apiInfo(apiDetail());
     }
@@ -35,7 +35,7 @@ public class swaggerConfig {
                 "2.1",
                 "Project - Free to use",
                 new Contact("Rikazzo", "https://github.com/Halstan/rikazzo", "enzoarauco@gmail.com"),
-                "MIT Licencse",
+                "MIT License",
                 "",
                 Collections.emptyList());
     }

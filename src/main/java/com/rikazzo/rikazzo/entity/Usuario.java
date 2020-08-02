@@ -3,6 +3,8 @@ package com.rikazzo.rikazzo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,22 +19,18 @@ public class Usuario{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_usuario;
 
-    @Column(nullable = false)
-    //@Text (value = Text.TextType.PASSWORD, message = "Ingrese contraseña")
+    @Column(nullable = false, length = 80)
     private String password;
 
     @Column
     private Integer dni;
 
     @Column(nullable = false, length = 40)
-    //@Text (value = Text.TextType.LETTERS, message = "Ingrese nombre")
     private String nombre;
 
     @Column(nullable = false, length = 40)
-    //@Text (value = Text.TextType.LETTERS, message = "Ingrese apellido paterno")
     private String apellidoPaterno;
 
-    //@Text (value = Text.TextType.LETTERS, message = "Ingrese apellido materno")
     @Column(length = 40)
     private String apellidoMaterno;
 
@@ -41,11 +39,17 @@ public class Usuario{
     private Date fecha_nacimiento;
 
     @Column
-    private Integer celular;
+    private String celular;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, length = 100)
     @Email
     private String email;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateRegist;
+
+    private Date dateUpdate;
     
     @ManyToOne
     @JsonIgnoreProperties("cli")
@@ -57,7 +61,7 @@ public class Usuario{
     
     @Column
     @JsonIgnoreProperties
-    private String state = StateType.ACTIVE.name();
+    private String state;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties("user")
@@ -65,5 +69,14 @@ public class Usuario{
                 inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<RoleVo> rol = new HashSet<>();
 
+    @PrePersist
+    public void prePersist(){
+        state = StateType.ACTIVE.name();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        dateUpdate = new Date();
+    }
 
 }

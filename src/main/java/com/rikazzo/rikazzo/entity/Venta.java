@@ -3,6 +3,7 @@ package com.rikazzo.rikazzo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -30,15 +31,13 @@ public class Venta implements Serializable {
     @Column(nullable = false)
     private Integer cantidad;
 
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)
-    private Date fecha;
-
     @Column
     private Double precio_bruto;
 
     @Column
     private Double precio_total;
+
+    private Date dateRegist;
 
     @ManyToOne
     @JsonIgnoreProperties("venta")
@@ -50,6 +49,7 @@ public class Venta implements Serializable {
     @PrePersist
     public void prePersist(){
         state = VentaState.ACTIVA.name();
+        dateRegist = new Date();
     }
 
 }

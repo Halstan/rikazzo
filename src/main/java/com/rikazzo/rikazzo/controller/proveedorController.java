@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/proveedores")
 public class proveedorController {
 
-    private final proveedorService proveedorService;
+    private proveedorService proveedorService;
 
     @Autowired
     public proveedorController(proveedorService proveedorService) {
